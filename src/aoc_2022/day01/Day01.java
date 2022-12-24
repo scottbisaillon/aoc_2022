@@ -1,15 +1,23 @@
-package day01;
+package aoc_2022.day01;
 
-import java.io.File;
+import aoc_2022.Day;
+
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class Day01 {
+public class Day01 extends Day {
 
-    static void partOne() {
-        File inputFile = new File("src/Day01/day01_input.txt");
+    public Day01() {
+        super("src/aoc_2022/Day01/day01_input.txt");
+    }
+
+    public Day01(String inputFilePath) {
+        super(inputFilePath);
+    }
+
+    @Override
+    public int partOne() {
         try {
             Scanner scanner = new Scanner(inputFile);
             int maxTotalCalories = -1;
@@ -28,26 +36,27 @@ public class Day01 {
             if (currentTotal > maxTotalCalories) {
                 maxTotalCalories = currentTotal;
             }
-            System.out.println(maxTotalCalories);
+            return maxTotalCalories;
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    static void partTwo() {
-        File inputFile = new File("src/Day01/day01_input.txt");
+    @Override
+    public int partTwo() {
         try {
             Scanner scanner = new Scanner(inputFile);
-            int maxTotalCalories[] = {-1, -1, -1};
+            int[] maxTotalCalories = {-1, -1, -1};
             int currentTotal = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.equals("\n") || line.isEmpty()) {
                     for (int i = 0; i < maxTotalCalories.length; i++) {
                         if (currentTotal > maxTotalCalories[i]) {
+                            int temp = maxTotalCalories[i];
                             maxTotalCalories[i] = currentTotal;
-                            break;
+                            currentTotal = temp;
                         }
                     }
                     currentTotal = 0;
@@ -57,19 +66,14 @@ public class Day01 {
             }
             for (int i = 0; i < maxTotalCalories.length; i++) {
                 if (currentTotal > maxTotalCalories[i]) {
+                    int temp = maxTotalCalories[i];
                     maxTotalCalories[i] = currentTotal;
-                    break;
+                    currentTotal = temp;
                 }
             }
-            int topThreeTotal = IntStream.of(maxTotalCalories).sum();
-            System.out.println(topThreeTotal);
+            return IntStream.of(maxTotalCalories).sum();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        partOne();
-        partTwo();
     }
 }

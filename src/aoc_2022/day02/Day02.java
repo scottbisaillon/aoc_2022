@@ -1,18 +1,22 @@
-package day02;
+package aoc_2022.day02;
 
-import java.io.File;
+import aoc_2022.Day;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Day02 {
+public class Day02 extends Day {
 
-    public static void main(String[] args) {
-        partOne();
-        partTwo();
+    public Day02() {
+        super("src/aoc_2022/Day02/day02_input.txt");
     }
 
-    static void partOne() {
-        File inputFile = new File("src/Day02/day02_input.txt");
+    public Day02(String inputFilePath) {
+        super(inputFilePath);
+    }
+
+    @Override
+    public int partOne() {
         try {
             Scanner scanner = new Scanner(inputFile);
 
@@ -22,15 +26,15 @@ public class Day02 {
                 String[] moves = line.split(" ");
                 totalScore += checkScore(Move.fromLabel(moves[0]), Move.fromLabel(moves[1]));
             }
-            System.out.println(totalScore);
+            return totalScore;
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    static void partTwo() {
-        File inputFile = new File("src/Day02/day02_input.txt");
+    @Override
+    public int partTwo() {
         try {
             Scanner scanner = new Scanner(inputFile);
 
@@ -45,7 +49,7 @@ public class Day02 {
                     default -> throw new RuntimeException(String.format("Unexpected input: %s", moves[1]));
                 };
             }
-            System.out.println(totalScore);
+            return totalScore;
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

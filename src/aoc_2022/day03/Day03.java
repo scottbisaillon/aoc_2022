@@ -1,23 +1,25 @@
-package day03;
+package aoc_2022.day03;
 
-import day02.Day02;
+import aoc_2022.Day;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Day03 {
-    public static void main(String[] args) {
-        partOne();
-        partTwo();
+public class Day03 extends Day {
+
+    public Day03() {
+        super("src/aoc_2022/Day03/day03_input.txt");
     }
 
-    static void partOne() {
-        File inputFile = new File("src/Day03/day03_input.txt");
+    public Day03(String inputFilePath) {
+        super(inputFilePath);
+    }
+
+    @Override
+    public int partOne() {
         try {
             Scanner scanner = new Scanner(inputFile);
 
@@ -37,14 +39,14 @@ public class Day03 {
                     }
                 }
             }
-            System.out.println(prioritySum);
+            return prioritySum;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    static void partTwo() {
-        File inputFile = new File("src/Day03/day03_input.txt");
+    @Override
+    public int partTwo() {
         try {
             Scanner scanner = new Scanner(inputFile);
 
@@ -71,13 +73,13 @@ public class Day03 {
                     }
                 }
             }
-            System.out.println(prioritySum);
+            return prioritySum;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    static int getPriority(char item) {
+    int getPriority(char item) {
         if (Character.isUpperCase(item)) {
             return ((int) item) - 38;
         } else {  // (Character.isLowerCase(item))
