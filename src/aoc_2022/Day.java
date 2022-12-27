@@ -27,8 +27,8 @@ public abstract class Day {
     abstract public int partTwo();
 
     public Stream<String> getLinesStream() {
-        try (Stream<String> stream = Files.lines(inputFile.toPath())) {
-            return stream;
+        try {
+            return Files.lines(inputFile.toPath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

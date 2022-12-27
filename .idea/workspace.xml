@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11e8ee94-a6aa-4d69-8768-610f1d75de34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/Day.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day04/Day04.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day04/day04_input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day01/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day01/Day01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day01/day01_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day01/day01_input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day02/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day02/Day02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day02/day02_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day02/day02_input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day03/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day03/Day03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day03/day03_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day03/day03_input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/day03/day03_test_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day03/day03_test_input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/day04/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day04/Day04.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
