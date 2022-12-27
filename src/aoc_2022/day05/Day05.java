@@ -27,38 +27,9 @@ public class Day05 extends Day<String, String> {
 
     @Override
     public String partOne() {
-        List<Stack<Character>> stacks = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            stacks.add(i, new Stack<>());
-        }
-        List<Character> crates = new ArrayList<>();
-
         try {
             Scanner scanner = new Scanner(inputFile);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.contains("1")) {
-                    scanner.nextLine();
-                    break;
-                }
-                CharacterIterator it = new StringCharacterIterator(line);
-                while (it.current() != CharacterIterator.DONE) {
-                    char crate = it.next();
-                    it.next();
-                    it.next();
-                    it.next();
-                    if (Character.isAlphabetic(crate)) {
-                        crates.add(crate);
-                    } else {
-                        crates.add(null);
-                    }
-                }
-            }
-            for (int i = crates.size() - 1; i >= 0; i--) {
-                if (crates.get(i) != null) {
-                    stacks.get(i % 9).push(crates.get(i));
-                }
-            }
+            List<Stack<Character>> stacks = constructCrateStacks(scanner);
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -73,13 +44,7 @@ public class Day05 extends Day<String, String> {
                     }
                 }
             }
-
-            StringBuilder result = new StringBuilder();
-            for (Stack<Character> stack : stacks) {
-                result.append(stack.peek());
-            }
-
-            return result.toString();
+            return buildResult(stacks);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -87,6 +52,72 @@ public class Day05 extends Day<String, String> {
 
     @Override
     public String partTwo() {
-        return "";
+        try {
+            Scanner scanner = new Scanner(inputFile);
+            List<Stack<Character>> stacks = constructCrateStacks(scanner);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                final Matcher matcher = pattern.matcher(line);
+                if (matcher.matches()) {
+                    int numberOfCrates = Integer.parseInt(matcher.group(1));
+                    int sourceStack = Integer.parseInt(matcher.group(2)) - 1;
+                    int destinationStack = Integer.parseInt(matcher.group(3)) - 1;
+
+                    Stack<Character> temp = new Stack<>();
+                    for (int i = 0; i < numberOfCrates; i++) {
+                        temp.push(stacks.get(sourceStack).pop());
+                    }
+                    for (int i = 0; i < numberOfCrates; i++) {
+                        stacks.get(destinationStack).push(temp.pop());
+                    }
+                }
+            }
+            return buildResult(stacks);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private List<Stack<Character>> constructCrateStacks(Scanner scanner) {
+        List<Stack<Character>> stacks = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            stacks.add(i, new Stack<>());
+        }
+        List<Character> crates = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.contains("1")) {
+                scanner.nextLine();
+                break;
+            }
+            CharacterIterator it = new StringCharacterIterator(line);
+            while (it.current() != CharacterIterator.DONE) {
+                char crate = it.next();
+                it.next();
+                it.next();
+                it.next();
+                if (Character.isAlphabetic(crate)) {
+                    crates.add(crate);
+                } else {
+                    crates.add(null);
+                }
+            }
+        }
+        for (int i = crates.size() - 1; i >= 0; i--) {
+            if (crates.get(i) != null) {
+                stacks.get(i % 9).push(crates.get(i));
+            }
+        }
+        return stacks;
+    }
+
+    private String buildResult(List<Stack<Character>> stacks) {
+        StringBuilder result = new StringBuilder();
+        for (Stack<Character> stack : stacks) {
+            result.append(stack.peek());
+        }
+        return result.toString();
     }
 }
