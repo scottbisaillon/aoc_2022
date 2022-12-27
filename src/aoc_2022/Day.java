@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.stream.Stream;
 
-public abstract class Day {
+public abstract class Day<T, V> {
 
     final String inputFilePath;
     public final File inputFile;
@@ -22,9 +22,9 @@ public abstract class Day {
         System.out.println();
     }
 
-    abstract public int partOne();
+    abstract public T partOne();
 
-    abstract public int partTwo();
+    abstract public V partTwo();
 
     public Stream<String> getLinesStream() {
         try {

@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Day03 extends Day {
+public class Day03 extends Day<Integer, Integer> {
 
     public Day03() {
         super("src/aoc_2022/Day03/day03_input.txt");
@@ -19,7 +19,7 @@ public class Day03 extends Day {
     }
 
     @Override
-    public int partOne() {
+    public Integer partOne() {
         try {
             Scanner scanner = new Scanner(inputFile);
 
@@ -46,7 +46,7 @@ public class Day03 extends Day {
     }
 
     @Override
-    public int partTwo() {
+    public Integer partTwo() {
         try {
             Scanner scanner = new Scanner(inputFile);
 

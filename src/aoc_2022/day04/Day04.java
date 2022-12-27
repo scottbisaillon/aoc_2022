@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Day04 extends Day {
+public class Day04 extends Day<Integer, Integer> {
     public Day04() {
         super("src/aoc_2022/day04/day04_input.txt");
     }
@@ -20,12 +20,12 @@ public class Day04 extends Day {
     }
 
     @Override
-    public int partOne() {
+    public Integer partOne() {
         return getLinesStream().reduce(0, (total, line) -> total + processSubset(line), Integer::sum);
     }
 
     @Override
-    public int partTwo() {
+    public Integer partTwo() {
         return getLinesStream().reduce(0, (total, line) -> total + processOverlap(line), Integer::sum);
     }
 

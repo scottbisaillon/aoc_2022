@@ -5,7 +5,7 @@ import aoc_2022.Day;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Day02 extends Day {
+public class Day02 extends Day<Integer, Integer> {
 
     public Day02() {
         super("src/aoc_2022/Day02/day02_input.txt");
@@ -16,7 +16,7 @@ public class Day02 extends Day {
     }
 
     @Override
-    public int partOne() {
+    public Integer partOne() {
         try {
             Scanner scanner = new Scanner(inputFile);
 
@@ -34,7 +34,7 @@ public class Day02 extends Day {
     }
 
     @Override
-    public int partTwo() {
+    public Integer partTwo() {
         try {
             Scanner scanner = new Scanner(inputFile);
 

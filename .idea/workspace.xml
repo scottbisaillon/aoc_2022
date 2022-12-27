@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11e8ee94-a6aa-4d69-8768-610f1d75de34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day04/day04_input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day05/Day05.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day05/day05_input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aoc_2022/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/day01/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day01/Day01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/day02/Day02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day02/Day02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/day03/Day03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day03/Day03.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aoc_2022/day04/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day04/Day04.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,18 +41,10 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last.edited.regexp&quot;: &quot;Sample Text&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Scott\Development\Repos\code_challenges\aoc_2022\src\aoc_2022\day01" />
@@ -124,5 +122,16 @@
       <updated>1671326802235</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
