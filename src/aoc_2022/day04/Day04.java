@@ -2,21 +2,12 @@ package aoc_2022.day04;
 
 import aoc_2022.Day;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Day04 extends Day<Integer, Integer> {
     public Day04() {
         super("src/aoc_2022/day04/day04_input.txt");
-    }
-
-    public Day04(String inputFilePath) {
-        super(inputFilePath);
     }
 
     @Override
