@@ -1,8 +1,10 @@
 package aoc_2022;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public abstract class Day<T, V> {
@@ -25,6 +27,14 @@ public abstract class Day<T, V> {
     abstract public T partOne();
 
     abstract public V partTwo();
+
+    public Scanner getFileScanner() {
+        try {
+            return new Scanner(inputFile);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File not found");
+        }
+    }
 
     public Stream<String> getLinesStream() {
         try {
