@@ -20,9 +20,8 @@ public class Day07 extends Day<Integer, Integer> {
 
     @Override
     public Integer partTwo() {
-        // bfs
-        // minimum greater than (30000000 - (70000000 - rootSize))
-        return 0;
+        int minDirectorySize = (30000000 - (70000000 - fs.getRootDirectory().getSize()));
+        return findDirectorySize(minDirectorySize, fs.getRootDirectory());
     }
 
     private FileSystem buildFileSystem() {
@@ -47,7 +46,9 @@ public class Day07 extends Day<Integer, Integer> {
         return fs;
     }
 
-    // sum the sizes of directories with less than the given size
+    /**
+     * sum the sizes of directories with less than the given size
+     */
     private int sumDirectorySizes(int size, DirectoryEntity dir) {
         int totalSize = 0;
         if (dir.getSize() <= size) {
@@ -57,5 +58,21 @@ public class Day07 extends Day<Integer, Integer> {
             totalSize += sumDirectorySizes(size, c);
         }
         return totalSize;
+    }
+
+    /**
+     * find the directory with minimum size that is also greater than the given size
+     */
+    private int findDirectorySize(int minSize, DirectoryEntity dir) {
+        int result = dir.getSize();
+        for (DirectoryEntity c : dir.getChildDirectories()) {
+            if (c.getSize() >= minSize) {
+                int size = findDirectorySize(minSize, c);
+                if (size < result) {
+                    result = size;
+                }
+            }
+        }
+        return result;
     }
 }

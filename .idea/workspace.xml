@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11e8ee94-a6aa-4d69-8768-610f1d75de34" name="Changes" comment="Day four">
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day07/Day07.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day07/DirectoryEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day07/FileEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day07/FileSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day07/FileSystemEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aoc_2022/day07/day07_input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aoc_2022/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/Day.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aoc_2022/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aoc_2022/day07/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aoc_2022/day07/Day07.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
