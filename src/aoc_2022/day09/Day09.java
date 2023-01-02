@@ -2,13 +2,15 @@ package aoc_2022.day09;
 
 import aoc_2022.Day;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Day09 extends Day<Integer, Integer> {
     public Day09() {
         super("src/aoc_2022/day09/day09_input.txt");
+    }
+
+    public Day09(String inputFilePath) {
+        super(inputFilePath);
     }
 
     @Override
@@ -51,7 +53,60 @@ public class Day09 extends Day<Integer, Integer> {
 
     @Override
     public Integer partTwo() {
-        return null;
+        Set<Coordinates> visited = new HashSet<>();
+
+        List<Coordinates> knots = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            knots.add(new Coordinates(0,0));
+        }
+
+        visited.add(new Coordinates(0, 0));
+
+        Scanner scanner = getFileScanner();
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] move = line.split(" ");
+
+//            System.out.printf("---- Move: %s ----%n", line);
+
+            int amount = Integer.parseInt(move[1]);
+
+            for (int i = 0; i < amount; i++) {
+//                Coordinates currentHeadLocation = knots.get(0);
+
+                knots.set(0, switch (move[0]) {
+                    case "U" -> knots.get(0).moveUp();
+                    case "R" -> knots.get(0).moveRight();
+                    case "D" -> knots.get(0).moveDown();
+                    case "L" -> knots.get(0).moveLeft();
+                    default -> throw new RuntimeException(String.format("Invalid direction: '%s'", move[0]));
+                });
+
+//                System.out.printf("Head moved %s -> %s%n", currentHeadLocation, knots.get(0));
+
+                for (int j = 1; j < knots.size(); j++) {
+
+                    if (knots.get(j).isAdjacent(knots.get(j - 1))) {
+//                        System.out.printf("[%s] is adjacent to [%s] (%s, %s)%n", j, j -1, knots.get(j), knots.get(j - 1));
+                        continue;
+                    }
+
+//                    Coordinates currentLocation = knots.get(j);
+                    knots.set(j, knots.get(j).moveToward(knots.get(j - 1)));
+//                    System.out.printf("[%s] moved %s -> %s%n", j, currentLocation, knots.get(j));
+
+                    if (j == knots.size() - 1) {
+//                        System.out.printf("Tail moved: %s%n", knots.get(j));
+                        visited.add(knots.get(j));
+//                        System.out.printf("Tail visited: %s%n", visited);
+                    }
+                }
+
+            }
+        }
+
+        return visited.size();
     }
 
     record Coordinates(int x, int y) {
