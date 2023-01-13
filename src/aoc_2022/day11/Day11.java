@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day11 extends Day<Integer, Integer> {
+public class Day11 extends Day<Integer, Long> {
 
     public Day11() {
         super("src/aoc_2022/day11/day11_input.txt");
@@ -95,7 +95,7 @@ public class Day11 extends Day<Integer, Integer> {
 
         int[] topTwo = new int[] {1, 1};
         for (Monkey monkey : monkeys) {
-            int totalItemsInspected = monkey.getTotalItemsInspected();
+            int totalItemsInspected = (int) monkey.getTotalItemsInspected();
             for (int i = 0; i < topTwo.length; i++) {
                 if (totalItemsInspected > topTwo[i]) {
                     int temp = topTwo[i];
@@ -110,8 +110,37 @@ public class Day11 extends Day<Integer, Integer> {
     }
 
     @Override
-    public Integer partTwo() {
-        return null;
+    public Long partTwo() {
+        List<Monkey> monkeys = buildInput();
+
+        long commonMultiple = monkeys.stream().map(Monkey::getTestValue).reduce(1, (a, b) -> a * b);
+        System.out.println(commonMultiple);
+
+        for (int i = 0; i < 10000; i++) {
+            for (Monkey monkey : monkeys) {
+                while (monkey.hasItems()) {
+                    long item = monkey.inspect() % commonMultiple;
+                    long newWorryLevel = monkey.getOperation().run(item);
+                    int receivingMonkey = monkey.runTest(newWorryLevel);
+                    monkeys.get(receivingMonkey).addItem(newWorryLevel);
+                }
+            }
+        }
+
+        long[] topTwo = new long[] {1, 1};
+        for (Monkey monkey : monkeys) {
+            long totalItemsInspected = monkey.getTotalItemsInspected();
+            for (int i = 0; i < topTwo.length; i++) {
+                if (totalItemsInspected > topTwo[i]) {
+                    long temp = topTwo[i];
+                    topTwo[i] = totalItemsInspected;
+                    totalItemsInspected = temp;
+
+                }
+            }
+        }
+
+        return topTwo[0] * topTwo[1];
     }
 
     interface Operation {
@@ -119,7 +148,7 @@ public class Day11 extends Day<Integer, Integer> {
     }
 
     static class Monkey {
-        private int totalItemsInspected;
+        private long totalItemsInspected;
         private final Queue<Long> items = new ArrayDeque<>();
         private Operation operation;
         private int test;
@@ -147,7 +176,7 @@ public class Day11 extends Day<Integer, Integer> {
             return !this.items.isEmpty();
         }
 
-        public int getTotalItemsInspected() {
+        public long getTotalItemsInspected() {
             return totalItemsInspected;
         }
 
@@ -158,6 +187,10 @@ public class Day11 extends Day<Integer, Integer> {
 
         public void setOperation(Operation operation) {
             this.operation = operation;
+        }
+
+        public int getTestValue() {
+            return test;
         }
 
         public void setTest(int test) {
