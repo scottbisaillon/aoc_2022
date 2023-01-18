@@ -17,38 +17,56 @@ public class Day12 extends Day<Integer, Integer> {
         Location start = null;
         Location end = null;
 
-        List<List<Location>> grid = new ArrayList<>();
-        Scanner scanner = getFileScanner();
-
-        int y = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            CharacterIterator it = new StringCharacterIterator(line);
-            int x = 0;
-            List<Location> row = new ArrayList<>();
-            while (it.current() != CharacterIterator.DONE) {
-                char elevation = it.current();
-                Location location;
-                if (elevation == 'S') {
-                    location = new Location(x, y, 'a');
+        List<List<Location>> grid = buildGrid();
+        for (List<Location> row : grid) {
+            for (Location location : row) {
+                if (location.elevation == 'S') {
+                    location.elevation = 'a';
                     start = location;
-                } else if (elevation == 'E') {
-                    location = new Location(x, y, 'z');
+                } else if (location.elevation == 'E') {
+                    location.elevation = 'z';
                     end = location;
-                } else {
-                    location = new Location(x, y, elevation);
                 }
-                row.add(location);
-                it.next();
-                x++;
             }
-            grid.add(row);
-            y++;
         }
 
         assert start != null;
         assert end != null;
 
+        return countShortestPath(grid, start, end);
+    }
+
+    @Override
+    public Integer partTwo() {
+        List<Location> starts = new ArrayList<>();
+        Location end = null;
+
+        List<List<Location>> grid = buildGrid();
+        for (List<Location> row : grid) {
+            for (Location location : row) {
+                if (location.elevation == 'S' || location.elevation == 'a') {
+                    location.elevation = 'a';
+                    starts.add(location);
+                } else if (location.elevation == 'E') {
+                    location.elevation = 'z';
+                    end = location;
+                }
+            }
+        }
+
+        int minSteps = Integer.MAX_VALUE;
+        for (Location start : starts) {
+            int steps = countShortestPath(grid, start, end);
+            if (steps < minSteps) {
+                minSteps = steps;
+            }
+            resetGrid(grid);
+        }
+
+        return minSteps;
+    }
+
+    int countShortestPath(List<List<Location>> grid, Location start, Location end) {
         Queue<Location> openSet = new PriorityQueue<>();
         openSet.add(start);
         start.gScore = 0;
@@ -71,13 +89,7 @@ public class Day12 extends Day<Integer, Integer> {
                 }
             }
         }
-
-        return null;
-    }
-
-    @Override
-    public Integer partTwo() {
-        return null;
+        return Integer.MAX_VALUE;
     }
 
     List<Location> getValidSteps(List<List<Location>> grid, Location location) {
@@ -109,11 +121,42 @@ public class Day12 extends Day<Integer, Integer> {
         return validSteps;
     }
 
+    List<List<Location>> buildGrid() {
+        List<List<Location>> grid = new ArrayList<>();
+        Scanner scanner = getFileScanner();
+
+        int y = 0;
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            CharacterIterator it = new StringCharacterIterator(line);
+            int x = 0;
+            List<Location> row = new ArrayList<>();
+            while (it.current() != CharacterIterator.DONE) {
+                char elevation = it.current();
+                Location location = new Location(x, y, elevation);
+                row.add(location);
+                it.next();
+                x++;
+            }
+            grid.add(row);
+            y++;
+        }
+        return grid;
+    }
+
+    void resetGrid(List<List<Location>> grid) {
+        for (List<Location> row : grid) {
+            for (Location location : row) {
+                location.reset();
+            }
+        }
+    }
+
     static class Location implements Comparable<Location> {
         final int x;
         final int y;
 
-        final char elevation;
+        char elevation;
         Double fScore = Double.POSITIVE_INFINITY;
         Integer gScore = Integer.MAX_VALUE;
 
@@ -129,6 +172,11 @@ public class Day12 extends Day<Integer, Integer> {
 
         public boolean isAccessible(Location other) {
             return other.elevation - this.elevation <= 1;
+        }
+
+        public void reset() {
+            fScore = Double.POSITIVE_INFINITY;
+            gScore = Integer.MAX_VALUE;
         }
 
         @Override
